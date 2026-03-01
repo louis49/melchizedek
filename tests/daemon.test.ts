@@ -18,7 +18,9 @@ const FIXTURES_DIR = join(import.meta.dirname, 'fixtures');
  * Test the daemon register/handshake protocol and per-connection McpServer
  * using an in-process net.Server that mimics the daemon.
  */
-describe('Daemon protocol', () => {
+const isWindows = process.platform === 'win32';
+
+describe.skipIf(isWindows)('Daemon protocol', () => {
   let db: Database.Database;
   let socketServer: net.Server;
   let socketPath: string;
