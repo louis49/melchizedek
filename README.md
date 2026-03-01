@@ -1,4 +1,4 @@
-# melchizedek
+# Melchizedek
 
 [![npm version](https://img.shields.io/npm/v/melchizedek)](https://www.npmjs.com/package/melchizedek)
 [![npm downloads](https://img.shields.io/npm/dw/melchizedek)](https://www.npmjs.com/package/melchizedek)
@@ -12,9 +12,9 @@
 
 ---
 
-## Why melchizedek?
+## Why Melchizedek?
 
-Claude Code forgets everything between sessions - and knows nothing about your other projects. melchizedek fixes both.
+Claude Code forgets everything between sessions - and knows nothing about your other projects. Melchizedek fixes both.
 
 It runs silently in the background - indexing your conversations as you work - then gives Claude the ability to search across your entire history, **across all projects**: past debugging sessions, architectural decisions, error solutions, code patterns.
 
@@ -49,7 +49,7 @@ It runs silently in the background - indexing your conversations as you work - t
 
 ### Daemon singleton - multi-instance support
 
-When you open multiple Claude Code windows, melchizedek shares a **single daemon process** across all of them - 1 database, 1 embedder, 1 reranker loaded once in memory.
+When you open multiple Claude Code windows, Melchizedek shares a **single daemon process** across all of them - 1 database, 1 embedder, 1 reranker loaded once in memory.
 
 The server starts in 3 phases:
 1. **Try connecting** to an existing daemon (Unix socket on macOS/Linux, named pipe on Windows)
@@ -198,7 +198,7 @@ For **marketplace installs**, hooks are configured automatically. For npm/npx/so
 }
 ```
 
-Replace `/absolute/path/to` with the actual path to your melchizedek installation (e.g. `$(npm root -g)/melchizedek` for global installs, or your clone directory for source installs).
+Replace `/absolute/path/to` with the actual path to your Melchizedek installation (e.g. `$(npm root -g)/melchizedek` for global installs, or your clone directory for source installs).
 
 | Hook | What it does |
 |------|-------------|
@@ -210,7 +210,7 @@ After installation, restart Claude Code. That's it - indexing starts automatical
 
 ## Enhanced Search (Optional)
 
-melchizedek works **out of the box** with BM25 keyword search. Text embeddings (MiniLM) download automatically on first use for semantic search. The optional backends below add **GPU-accelerated code embeddings** and **reranking** for maximum search quality.
+Melchizedek works **out of the box** with BM25 keyword search. Text embeddings (MiniLM) download automatically on first use for semantic search. The optional backends below add **GPU-accelerated code embeddings** and **reranking** for maximum search quality.
 
 ### Recommended Setup by Platform
 
@@ -274,7 +274,7 @@ All Transformers.js models auto-download from Hugging Face on first use. GGUF mo
 
 ### Tested embedding models
 
-You can switch embedding models via `m9k_config key="embeddingTextModel" value='"model-key"'`. All models below have been tested end-to-end (load, embed, normalize, dimension check). Any ONNX-compatible HuggingFace model not listed here can also be used - melchizedek will auto-detect dimensions and pooling from the model cache.
+You can switch embedding models via `m9k_config key="embeddingTextModel" value='"model-key"'`. All models below have been tested end-to-end (load, embed, normalize, dimension check). Any ONNX-compatible HuggingFace model not listed here can also be used - Melchizedek will auto-detect dimensions and pooling from the model cache.
 
 #### Transformers.js (local ONNX, zero config)
 
@@ -297,7 +297,7 @@ You can switch embedding models via `m9k_config key="embeddingTextModel" value='
 | `jina-v2-small-en` | [Xenova/jina-embeddings-v2-small-en](https://huggingface.co/Xenova/jina-embeddings-v2-small-en) | 512 | mean | 8K tok | EN | Lighter Jina variant |
 | `qwen3-embedding-0.6b` | [onnx-community/Qwen3-Embedding-0.6B-ONNX](https://huggingface.co/onnx-community/Qwen3-Embedding-0.6B-ONNX) | 1024 | last_token | 8K tok | Multi | Instruction-tuned, highest quality, slowest (~9s first embed) |
 
-**Custom models:** Set `embeddingTextModel` to any HuggingFace model ID (e.g. `"org/my-model"`). melchizedek resolves in order: built-in registry, HF cache metadata (`config.json`), then dynamic fallback (mean pooling, dimensions probed at runtime).
+**Custom models:** Set `embeddingTextModel` to any HuggingFace model ID (e.g. `"org/my-model"`). Melchizedek resolves in order: built-in registry, HF cache metadata (`config.json`), then dynamic fallback (mean pooling, dimensions probed at runtime).
 
 #### Ollama (GPU-accelerated, any model)
 
@@ -344,7 +344,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama pull unclemusclez/jina-embeddings-v2-base-code
 ```
 
-Then tell melchizedek to use Ollama for code embeddings:
+Then tell Melchizedek to use Ollama for code embeddings:
 
 ```
 m9k_config key="embeddingCodeBackend" value='"ollama"'
@@ -376,14 +376,14 @@ wget https://huggingface.co/gpustack/bge-reranker-v2-m3-GGUF/resolve/main/bge-re
   -m bge-reranker-v2-m3-Q4_K_M.gguf --port 8012
 ```
 
-Then configure melchizedek - either edit `~/.melchizedek/config.json` or ask Claude:
+Then configure Melchizedek - either edit `~/.melchizedek/config.json` or ask Claude:
 
 ```
 m9k_config key="rerankerBackend" value='"llama-server"'
 m9k_config key="rerankerUrl" value='"http://localhost:8012"'
 ```
 
-Verify: `curl http://localhost:8012/health` should return `{"status":"ok"}`. Hot-reload works - no need to restart melchizedek.
+Verify: `curl http://localhost:8012/health` should return `{"status":"ok"}`. Hot-reload works - no need to restart Melchizedek.
 
 #### Option B - node-llama-cpp
 
@@ -393,7 +393,7 @@ mkdir -p ~/.melchizedek/models
 cp bge-reranker-v2-m3-Q4_K_M.gguf ~/.melchizedek/models/
 ```
 
-No config needed - melchizedek auto-detects GGUF files matching `bge-reranker*` or `qwen*reranker*` in `~/.melchizedek/models/`.
+No config needed - Melchizedek auto-detects GGUF files matching `bge-reranker*` or `qwen*reranker*` in `~/.melchizedek/models/`.
 
 ### Backend detection priority
 
@@ -482,7 +482,7 @@ Zero config by default. Everything is tunable via `m9k_config` or environment va
 
 ## How is this different?
 
-| | melchizedek | [claude-historian-mcp](https://github.com/Vvkmnn/claude-historian-mcp) | [claude-mem](https://github.com/thedotmack/claude-mem) | [episodic-memory](https://github.com/obra/episodic-memory) | [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) |
+| | Melchizedek | [claude-historian-mcp](https://github.com/Vvkmnn/claude-historian-mcp) | [claude-mem](https://github.com/thedotmack/claude-mem) | [episodic-memory](https://github.com/obra/episodic-memory) | [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) |
 |---|:---:|:---:|:---:|:---:|:---:|
 | | [![GitHub stars](https://img.shields.io/github/stars/louis49/melchizedek?style=flat&label=%E2%AD%90)](https://github.com/louis49/melchizedek) [![npm](https://img.shields.io/npm/dw/melchizedek?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/melchizedek) | [![GitHub stars](https://img.shields.io/github/stars/Vvkmnn/claude-historian-mcp?style=flat&label=%E2%AD%90)](https://github.com/Vvkmnn/claude-historian-mcp) [![npm](https://img.shields.io/npm/dw/claude-historian-mcp?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-historian-mcp) | [![GitHub stars](https://img.shields.io/github/stars/thedotmack/claude-mem?style=flat&label=%E2%AD%90)](https://github.com/thedotmack/claude-mem) [![npm](https://img.shields.io/npm/dw/claude-mem?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-mem) | [![GitHub stars](https://img.shields.io/github/stars/obra/episodic-memory?style=flat&label=%E2%AD%90)](https://github.com/obra/episodic-memory) | [![GitHub stars](https://img.shields.io/github/stars/doobidoo/mcp-memory-service?style=flat&label=%E2%AD%90)](https://github.com/doobidoo/mcp-memory-service) [![PyPI](https://img.shields.io/pypi/dw/mcp-memory-service?style=flat&label=%E2%AC%87)](https://pypi.org/project/mcp-memory-service/) |
 | Philosophy | **Search engine** - indexes everything, you search | Search engine - scans JSONL on demand | Notebook - AI compresses & saves | Search engine | Notebook - AI decides what to store |
@@ -513,7 +513,7 @@ This project stands on the shoulders of others. Key ideas borrowed from:
 
 ## Memory usage
 
-melchizedek loads ML models for embeddings and reranking. Here's what to expect:
+Melchizedek loads ML models for embeddings and reranking. Here's what to expect:
 
 | Component | RSS (real) | When |
 |-----------|-----------|------|
@@ -534,7 +534,7 @@ To reduce memory usage:
 
 ## Known issues
 
-- **Session boost inactive** - Claude Code currently sends an empty `session_id` in the [SessionStart hook stdin payload](https://code.claude.com/docs/en/hooks#common-input-fields), preventing the ×1.2 session boost from working. The ×1.5 project boost is unaffected and provides the primary context-aware ranking. Related upstream issues: [#13668](https://github.com/anthropics/claude-code/issues/13668) (empty `transcript_path`), [#9188](https://github.com/anthropics/claude-code/issues/9188) (stale `session_id`). melchizedek's session boost code is tested and ready, and will activate automatically when the upstream fix lands.
+- **Session boost inactive** - Claude Code currently sends an empty `session_id` in the [SessionStart hook stdin payload](https://code.claude.com/docs/en/hooks#common-input-fields), preventing the ×1.2 session boost from working. The ×1.5 project boost is unaffected and provides the primary context-aware ranking. Related upstream issues: [#13668](https://github.com/anthropics/claude-code/issues/13668) (empty `transcript_path`), [#9188](https://github.com/anthropics/claude-code/issues/9188) (stale `session_id`). Melchizedek's session boost code is tested and ready, and will activate automatically when the upstream fix lands.
 
 
 ## Privacy
