@@ -77,7 +77,7 @@
     "better-sqlite3": "^12.6.0",
     "rotating-file-stream": "^3.2.9",
     "sqlite-vec": "^0.1.6",
-    "zod": "^3.25.0"
+    "zod": "^4.3.6"
   },
   "optionalDependencies": {
     "node-llama-cpp": "^3.16.2"
