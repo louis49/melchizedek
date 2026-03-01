@@ -80,7 +80,7 @@
     "zod": "^3.25.0"
   },
   "optionalDependencies": {
-    "node-llama-cpp": "^3.16.2"
+    "node-llama-cpp": "^3.17.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
