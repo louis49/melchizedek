@@ -1,0 +1,9 @@
+{
+  "name": "melchizedek",
+  "version": "1.0.0",
+  "description": "Persistent memory for Claude Code. Indexes your conversation transcripts and provides hybrid search (BM25 + vectors + rerank).",
+  "license": "MIT",
+  "engines": {
+    "claude-code": ">=2.0.0"
+  }
+}

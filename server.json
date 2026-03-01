@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.louis49/melchizedek",
+  "description": "Persistent memory for Claude Code — offline, single-file, hybrid search.",
+  "repository": {
+    "url": "https://github.com/louis49/melchizedek",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "melchizedek",
+      "version": "1.0.0",
+      "transport": { "type": "stdio" }
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "name": "melchizedek",
+  "version": "1.0.0",
+  "description": "Persistent memory for Claude Code with hybrid search (BM25 + vectors + reranker) — MCP plugin",
+  "type": "module",
+  "main": "dist/server.js",
+  "author": "Benoît DESNOS <louis49@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louis49/melchizedek.git"
+  },
+  "bugs": {
+    "url": "https://github.com/louis49/melchizedek/issues"
+  },
+  "homepage": "https://github.com/louis49/melchizedek#readme",
+  "funding": "https://github.com/sponsors/louis49",
+  "bin": {
+    "melchizedek-server": "dist/server.js",
+    "melchizedek-daemon": "dist/daemon.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist/",
+    ".claude-plugin/",
+    ".mcp.json.template",
+    "hooks/hooks.json.template",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "build:hooks": "node build.mjs hooks",
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/ tests/ && prettier --check src/ tests/",
+    "lint:fix": "eslint --fix src/ tests/ && prettier --write src/ tests/",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prepublishOnly": "npm run check && npm run build",
+    "bench": "tsx bench/search-bench.ts",
+    "bench:memory": "tsx bench/memory-bench.ts"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "claude-code",
+    "claude",
+    "anthropic",
+    "memory",
+    "persistent-memory",
+    "search",
+    "plugin",
+    "sqlite",
+    "bm25",
+    "embeddings",
+    "vector-search",
+    "hybrid-search",
+    "reranker",
+    "conversation-history",
+    "ai-agent",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "@modelcontextprotocol/sdk": "^1.27.0",
+    "better-sqlite3": "^12.6.0",
+    "rotating-file-stream": "^3.2.9",
+    "sqlite-vec": "^0.1.6",
+    "zod": "^3.25.0"
+  },
+  "optionalDependencies": {
+    "node-llama-cpp": "^3.16.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.27.3",
+    "eslint": "^10.0.2",
+    "prettier": "^3.4.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^4.0.18"
+  }
+}
