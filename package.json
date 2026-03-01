@@ -1,6 +1,7 @@
 {
   "name": "melchizedek",
-  "version": "1.0.0",
+  "mcpName": "io.github.louis49/melchizedek",
+  "version": "1.0.1",
   "description": "Persistent memory for Claude Code with hybrid search (BM25 + vectors + reranker) — MCP plugin",
   "type": "module",
   "main": "dist/server.js",
