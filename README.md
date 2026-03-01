@@ -5,7 +5,7 @@
 [![CI](https://github.com/louis49/melchizedek/actions/workflows/ci.yml/badge.svg)](https://github.com/louis49/melchizedek/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Persistent memory for Claude Code.** Automatically indexes every conversation and provides production-grade hybrid search (BM25 + vectors + reranker) via MCP tools. 100% local, zero config, zero API keys.
+**Persistent memory for Claude Code.** Automatically indexes every conversation and provides production-grade hybrid search (BM25 + vectors + reranker) via MCP tools. 100% local, zero config, zero API keys, zero invoice.
 
 <!-- TODO: Record a GIF demo with prompt "De quoi on a parlé lors de notre toute première discussion sur ce projet ? En détail stp" showing m9k_search → m9k_context progressive retrieval -->
 <!-- ![melchizedek demo](docs/demo.gif) -->
