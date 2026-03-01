@@ -1,0 +1,25 @@
+# Node
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Runtime data
+*.db
+
+# Generated from .template (build resolves ${CLAUDE_PLUGIN_ROOT})
+hooks/hooks.json
+.mcp.json
+
+# Secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

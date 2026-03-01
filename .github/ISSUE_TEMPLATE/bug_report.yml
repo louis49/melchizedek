@@ -1,0 +1,109 @@
+name: Bug Report
+description: Report a bug in melchizedek
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please fill out the information below.
+        To reproduce with debug logs, set `M9K_LOG_LEVEL=debug` in your environment before starting Claude Code.
+
+  - type: input
+    id: version
+    attributes:
+      label: melchizedek version
+      description: Run `npm list melchizedek` or check package.json
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: claude-code-version
+    attributes:
+      label: Claude Code version
+      description: Run `claude --version`
+      placeholder: "2.x.x"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      description: Run `node --version`
+      placeholder: "v20.11.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Linux
+        - Windows
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Server mode
+      description: Check with `m9k_info` (mode field)
+      options:
+        - daemon (default)
+        - local (M9K_NO_DAEMON=1)
+        - unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug description
+      description: What happened? What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to reproduce the issue
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: m9k-info
+    attributes:
+      label: m9k_info output
+      description: Ask Claude to call `m9k_info` and paste the JSON output here. This includes corpus stats, search pipeline status, memory usage, and worker state.
+      render: json
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: Ask Claude to call `m9k_config` (no arguments) and paste the output here. Remove any sensitive paths if needed.
+      render: json
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Debug logs
+      description: |
+        Set `M9K_LOG_LEVEL=debug` in your environment, reproduce the bug, then paste logs from:
+        - stderr output, or
+        - `~/.melchizedek/logs/melchizedek.log`
+      render: shell
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any other relevant information
