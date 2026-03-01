@@ -482,24 +482,24 @@ Zero config by default. Everything is tunable via `m9k_config` or environment va
 
 ## How is this different?
 
-| | melchizedek | [claude-historian-mcp](https://github.com/Vvkmnn/claude-historian-mcp) | [claude-mem](https://github.com/thedotmack/claude-mem) | [episodic-memory](https://github.com/obra/episodic-memory) | [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) | Built-in auto memory |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| | [![GitHub stars](https://img.shields.io/github/stars/louis49/melchizedek?style=flat&label=%E2%AD%90)](https://github.com/louis49/melchizedek) [![npm](https://img.shields.io/npm/dw/melchizedek?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/melchizedek) | [![GitHub stars](https://img.shields.io/github/stars/Vvkmnn/claude-historian-mcp?style=flat&label=%E2%AD%90)](https://github.com/Vvkmnn/claude-historian-mcp) [![npm](https://img.shields.io/npm/dw/claude-historian-mcp?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-historian-mcp) | [![GitHub stars](https://img.shields.io/github/stars/thedotmack/claude-mem?style=flat&label=%E2%AD%90)](https://github.com/thedotmack/claude-mem) [![npm](https://img.shields.io/npm/dw/claude-mem?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-mem) | [![GitHub stars](https://img.shields.io/github/stars/obra/episodic-memory?style=flat&label=%E2%AD%90)](https://github.com/obra/episodic-memory) | [![GitHub stars](https://img.shields.io/github/stars/doobidoo/mcp-memory-service?style=flat&label=%E2%AD%90)](https://github.com/doobidoo/mcp-memory-service) [![PyPI](https://img.shields.io/pypi/dw/mcp-memory-service?style=flat&label=%E2%AC%87)](https://pypi.org/project/mcp-memory-service/) | N/A |
-| Philosophy | **Search engine** - indexes everything, you search | Search engine - scans JSONL on demand | Notebook - AI compresses & saves | Search engine | Notebook - AI decides what to store | Notebook - AI writes notes |
-| Indexes raw conversations | Yes (JSONL transcripts) | Yes (direct JSONL read, no persistent index) | Compressed summaries | Yes (JSONL) | No (manual `store_memory`) | No |
-| Retroactive on install | Yes (backfills all history) | Yes (reads existing files) | No | Yes | No (empty at start) | No |
-| Search | BM25 + vectors + RRF + reranker | TF-IDF + fuzzy matching | FTS5 + ChromaDB | Vectors only | BM25 + vectors | None |
-| Progressive retrieval | 3 layers (search/context/full) | No | No | No | No | No |
-| 100% offline | Yes | Yes | No (needs API for compression) | Yes | Yes | Yes |
-| Single-file storage | SQLite | None (reads raw JSONL) | SQLite + ChromaDB | SQLite | SQLite-vec | Markdown |
-| Zero config | Yes | Yes | Yes | Yes | Yes | Yes |
-| MCP tools | 16 | 10 | 4 | 2 | 12 | 0 |
-| License | **MIT** | MIT | AGPL-3.0 | MIT | Apache-2.0 | N/A |
-| Dual embedding (text + code) | Yes (MiniLM + Jina Code) | No | No | No | No | No |
-| Configurable models | Yes (Transformers.js or Ollama) | No | No (Chroma internal) | No (hardcoded) | Yes (ONNX, Ollama, OpenAI, Cloudflare) | No |
-| Reranker | Cross-encoder (ONNX, GGUF, or HTTP) | No | No | No | Quality scorer (not search reranker) | No |
-| Privacy | All local, `<private>` tag redaction | All local | Sends data to Anthropic API | All local | All local | All local |
-| Multi-instance | **Singleton daemon** - N Claude windows share 1 process (Unix socket / Windows named pipe, local fallback) | N separate processes | Shared HTTP worker (:37777) | N separate processes | Shared HTTP server | N/A |
+| | melchizedek | [claude-historian-mcp](https://github.com/Vvkmnn/claude-historian-mcp) | [claude-mem](https://github.com/thedotmack/claude-mem) | [episodic-memory](https://github.com/obra/episodic-memory) | [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) |
+|---|:---:|:---:|:---:|:---:|:---:|
+| | [![GitHub stars](https://img.shields.io/github/stars/louis49/melchizedek?style=flat&label=%E2%AD%90)](https://github.com/louis49/melchizedek) [![npm](https://img.shields.io/npm/dw/melchizedek?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/melchizedek) | [![GitHub stars](https://img.shields.io/github/stars/Vvkmnn/claude-historian-mcp?style=flat&label=%E2%AD%90)](https://github.com/Vvkmnn/claude-historian-mcp) [![npm](https://img.shields.io/npm/dw/claude-historian-mcp?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-historian-mcp) | [![GitHub stars](https://img.shields.io/github/stars/thedotmack/claude-mem?style=flat&label=%E2%AD%90)](https://github.com/thedotmack/claude-mem) [![npm](https://img.shields.io/npm/dw/claude-mem?style=flat&label=%E2%AC%87)](https://www.npmjs.com/package/claude-mem) | [![GitHub stars](https://img.shields.io/github/stars/obra/episodic-memory?style=flat&label=%E2%AD%90)](https://github.com/obra/episodic-memory) | [![GitHub stars](https://img.shields.io/github/stars/doobidoo/mcp-memory-service?style=flat&label=%E2%AD%90)](https://github.com/doobidoo/mcp-memory-service) [![PyPI](https://img.shields.io/pypi/dw/mcp-memory-service?style=flat&label=%E2%AC%87)](https://pypi.org/project/mcp-memory-service/) |
+| Philosophy | **Search engine** - indexes everything, you search | Search engine - scans JSONL on demand | Notebook - AI compresses & saves | Search engine | Notebook - AI decides what to store |
+| Indexes raw conversations | Yes (JSONL transcripts) | Yes (direct JSONL read, no persistent index) | Compressed summaries | Yes (JSONL) | No (manual `store_memory`) |
+| Retroactive on install | Yes (backfills all history) | Yes (reads existing files) | No | Yes | No (empty at start) |
+| Search | BM25 + vectors + RRF + reranker | TF-IDF + fuzzy matching | FTS5 + ChromaDB | Vectors only | BM25 + vectors |
+| Progressive retrieval | 3 layers (search/context/full) | No | No | No | No |
+| 100% offline | Yes | Yes | No (needs API for compression) | Yes | Yes |
+| Single-file storage | SQLite | None (reads raw JSONL) | SQLite + ChromaDB | SQLite | SQLite-vec |
+| Zero config | Yes | Yes | Yes | Yes | Yes |
+| MCP tools | 16 | 10 | 4 | 2 | 12 |
+| License | **MIT** | MIT | AGPL-3.0 | MIT | Apache-2.0 |
+| Dual embedding (text + code) | Yes (MiniLM + Jina Code) | No | No | No | No |
+| Configurable models | Yes (Transformers.js or Ollama) | No | No (Chroma internal) | No (hardcoded) | Yes (ONNX, Ollama, OpenAI, Cloudflare) |
+| Reranker | Cross-encoder (ONNX, GGUF, or HTTP) | No | No | No | Quality scorer (not search reranker) |
+| Privacy | All local, `<private>` tag redaction | All local | Sends data to Anthropic API | All local | All local |
+| Multi-instance | **Singleton daemon** - N Claude windows share 1 process (Unix socket / Windows named pipe, local fallback) | N separate processes | Shared HTTP worker (:37777) | N separate processes | Shared HTTP server |
 
 ### Inspirations
 
