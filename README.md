@@ -4,11 +4,10 @@
 [![npm downloads](https://img.shields.io/npm/dw/melchizedek)](https://www.npmjs.com/package/melchizedek)
 [![CI](https://github.com/louis49/melchizedek/actions/workflows/ci.yml/badge.svg)](https://github.com/louis49/melchizedek/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Donate](https://badgen.net/badge/paypal/donate?icon=https://simpleicons.now.sh/paypal/fff)](https://www.paypal.com/donate/?hosted_button_id=B8NGNPFGK69BY)
+[![Donate](https://badgen.net/badge/buymeacoffee/donate?icon=https://simpleicons.now.sh/buymeacoffee/fff)](https://www.buymeacoffee.com/louis49github)
 
 **Persistent memory for Claude Code.** Automatically indexes every conversation and provides production-grade hybrid search (BM25 + vectors + reranker) via MCP tools. 100% local, zero config, zero API keys, zero invoice.
-
-<!-- TODO: Record a GIF demo with prompt "De quoi on a parlé lors de notre toute première discussion sur ce projet ? En détail stp" showing m9k_search → m9k_context progressive retrieval -->
-<!-- ![melchizedek demo](docs/demo.gif) -->
 
 ---
 
