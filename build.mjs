@@ -1,6 +1,9 @@
 import { build } from 'esbuild';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, rmSync } from 'fs';
 import { resolve } from 'path';
+
+// Clean dist/ to avoid stale files from deleted sources
+rmSync('dist', { recursive: true, force: true });
 
 const isHooks = process.argv[2] === 'hooks';
 

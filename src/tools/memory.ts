@@ -385,6 +385,7 @@ export function registerMemoryTools(server: McpServer, ctx: ToolContext): void {
           {
             type: 'text' as const,
             text: JSON.stringify({
+              version: ctx.version,
               status,
               mode: ctx.mode,
               logLevel: ctx.cfg.logLevel,

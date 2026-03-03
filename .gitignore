@@ -9,7 +9,11 @@ build/
 .vscode/
 *.swp
 
-# Runtime data
+# Projet — Claude Code runtime data
+.claude/*
+!.claude/rules/
+!.claude/commands/
+!.claude/settings.local.json
 *.db
 
 # Generated from .template (build resolves ${CLAUDE_PLUGIN_ROOT})

@@ -892,8 +892,11 @@ describe('MCP server', () => {
     const guide = tools.tools.find((t) => t.name === '__USAGE_GUIDE');
     const desc = guide?.description ?? '';
 
-    // Version
-    expect(desc).toContain('v1.0.0');
+    // Version (read from package.json, not hardcoded)
+    const { version } = JSON.parse(
+      readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+    );
+    expect(desc).toContain(`v${version}`);
     // Dynamic stats — should show session/chunk counts
     expect(desc).toContain('sessions');
     expect(desc).toContain('chunks');

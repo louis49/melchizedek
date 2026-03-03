@@ -3,6 +3,7 @@
  * Dual-mode: proxy to singleton daemon (preferred) or local standalone.
  */
 
+import { readFileSync } from 'fs';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { openDatabase, setStat, getMeta, recreateVecTables, getVecTableDimensions } from './db.js';
@@ -78,7 +79,9 @@ export function createServer(
     vecCodeEnabled = false;
   }
 
-  const VERSION = '1.0.0';
+  const { version: VERSION } = JSON.parse(
+    readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+  );
   const embedderText = options?.embedderText ?? null;
   const embedderCode = options?.embedderCode ?? null;
   const reranker = options?.reranker ?? null;
