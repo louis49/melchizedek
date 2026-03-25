@@ -75,7 +75,7 @@
   "dependencies": {
     "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.27.0",
-    "better-sqlite3": "^12.6.0",
+    "better-sqlite3": "^12.8.0",
     "rotating-file-stream": "^3.2.9",
     "sqlite-vec": "^0.1.6",
     "zod": "^3.25.0"
@@ -92,13 +92,13 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/better-sqlite3": "^7.6.0",
-    "@types/node": "^20.0.0",
+    "@types/node": "^20.19.37",
     "esbuild": "^0.27.3",
-    "eslint": "^10.0.2",
+    "eslint": "^10.1.0",
     "prettier": "^3.4.0",
     "tsx": "^4.0.0",
     "typescript": "^5.6.0",
-    "typescript-eslint": "^8.56.1",
-    "vitest": "^4.0.18"
+    "typescript-eslint": "^8.57.2",
+    "vitest": "^4.1.1"
   }
 }
