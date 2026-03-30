@@ -377,7 +377,10 @@ async function runLocalMode(): Promise<void> {
 // NOTE: don't use import.meta.url check — esbuild bundles this into daemon.js too,
 // and import.meta.url would match there (causing server main to run inside daemon).
 const isMainModule =
-  (process.argv[1]?.endsWith('/server.js') || process.argv[1]?.endsWith('\\server.js')) ?? false;
+  (process.argv[1]?.endsWith('/server.js') ||
+    process.argv[1]?.endsWith('\\server.js') ||
+    process.argv[1]?.endsWith('/melchizedek-server')) ??
+  false;
 
 if (isMainModule) {
   const noDaemon = process.env.M9K_NO_DAEMON === '1' || process.argv.includes('--no-daemon');

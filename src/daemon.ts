@@ -80,7 +80,10 @@ function cleanStaleDaemon(): void {
 // NOTE: don't use import.meta.url check — esbuild bundles server.ts into this file,
 // and import.meta.url would match in both (causing server main to also run).
 const isMainModule =
-  (process.argv[1]?.endsWith('/daemon.js') || process.argv[1]?.endsWith('\\daemon.js')) ?? false;
+  (process.argv[1]?.endsWith('/daemon.js') ||
+    process.argv[1]?.endsWith('\\daemon.js') ||
+    process.argv[1]?.endsWith('/melchizedek-daemon')) ??
+  false;
 
 if (isMainModule) {
   (async () => {
