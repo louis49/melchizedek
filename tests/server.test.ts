@@ -1,9 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import { tmpdir } from 'os';
 import { join } from 'path';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { createServer } from '../src/server.js';
+import { getConfigFilePath } from '../src/config.js';
 import {
   openMemoryDatabase,
   closeDatabase,
@@ -537,6 +539,17 @@ describe('MCP server', () => {
     const data = JSON.parse((result.content as Array<{ text: string }>)[0].text);
     expect(data.updated).toBe(true);
     expect(data.config.autoFuzzyThreshold).toBe(5);
+  });
+
+  it('m9k_config writes under the test HOME, never the real one', async () => {
+    expect(getConfigFilePath().startsWith(tmpdir())).toBe(true);
+
+    await client.callTool({
+      name: 'm9k_config',
+      arguments: { key: 'autoFuzzyThreshold', value: '5' },
+    });
+
+    expect(existsSync(getConfigFilePath())).toBe(true);
   });
 
   it('m9k_config should accept embeddingTextBackend key', async () => {
